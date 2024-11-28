@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Account
+{% endblock %}
+
+{% block content %}
+<h1>Edit Account</h1>
+<form method="POST" action="{{ url_for('edit_account') }}">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.username.label }}<br>
+        {{ form.username(size=35) }}
+    </div>
+    <div>
+        {{ form.email.label }}<br>
+        {{ form.email(size=35) }}
+    </div>
+    <div>
+        {{ form.current_password.label }}<br>
+        {{ form.current_password(size=35) }}
+    </div>
+    <div>
+        {{ form.new_password.label }}<br>
+        {{ form.new_password(size=35) }}
+    </div>
+    <div>
+        {{ form.confirm_new_password.label }}<br>
+        {{ form.confirm_new_password(size=35) }}
+    </div>
+    <div>
+        {{ form.submit() }}
+    </div>
+</form>
+{% endblock %}
