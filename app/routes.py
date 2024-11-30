@@ -68,7 +68,7 @@ def edit_account():
     if form.validate_on_submit():
         # Проверяем текущий пароль
         if not bcrypt.check_password_hash(current_user.password, form.current_password.data):
-            flash('Invalid current password', 'danger')
+            flash('Неверный текущий пароль', 'danger')
         else:
             # Обновляем данные пользователя
             current_user.username = form.username.data
@@ -80,7 +80,7 @@ def edit_account():
                 current_user.password = hashed_password
 
             db.session.commit()
-            flash('Your account has been updated!', 'success')
+            flash('Ваша учетная запись была обновлена!', 'success')
             return redirect(url_for('account'))
 
     elif request.method == 'GET':

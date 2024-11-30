@@ -11,14 +11,14 @@
 <body>
     <nav>
         <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('home') }}">Домашняя страница</a></li>
             {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('account') }}">Account</a></li>
-                <li><a href="{{ url_for('edit_account') }}">Edit Account</a></li> <!-- Добавлено здесь -->
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('account') }}">Учетная запись</a></li>
+                <li><a href="{{ url_for('edit_account') }}">Редактировать учетную запись</a></li> <!-- Добавлено здесь -->
+                <li><a href="{{ url_for('logout') }}">Выход из системы</a></li>
             {% else %}
-                <li><a href="{{ url_for('login') }}">Login</a></li>
-                <li><a href="{{ url_for('register') }}">Register</a></li>
+                <li><a href="{{ url_for('login') }}">Авторизоваться</a></li>
+                <li><a href="{{ url_for('register') }}">Регистрация</a></li>
             {% endif %}
         </ul>
     </nav>

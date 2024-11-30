@@ -1,7 +1,7 @@
 # 1. Импортируем библиотеки:
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
 # Валидатор EqualTo нужен для того, чтобы сравнивать значения в полях паролей и узнавать, точно ли они одинаковые.
 # 2. Импортируем модель User из нашего модуля:
 from app.models import User
@@ -9,13 +9,16 @@ from flask_login import current_user
 
 
 class UpdateAccountForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=35)])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    current_password = PasswordField('Current Password', validators=[DataRequired()])
-    new_password = PasswordField('New Password', validators=[Length(min=6)], render_kw={"placeholder": "Optional"})
+    username = StringField('Имя пользователя', validators=[DataRequired(), Length(min=2, max=35)])
+    email = StringField('E-mail', validators=[DataRequired(), Email()])
+    current_password = PasswordField('Текущий пароль', validators=[DataRequired()])
+    new_password = PasswordField(
+        'Новый пароль',
+        validators=[Optional(), Length(min=6)],
+        render_kw={"placeholder": "Optional"})
     confirm_new_password = PasswordField(
-        'Confirm New Password',
-        validators=[EqualTo('new_password', message="Passwords must match")],
+        'Повторить новый пароль',
+        validators=[Optional(), EqualTo('new_password', message="Passwords must match")],
         render_kw={"placeholder": "Optional"}
     )
     submit = SubmitField('Update')
